@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop Spot - Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo-group">
+        <img src="logo.png" alt="Shop Spot Logo" />
+        <h1>Shop Spot</h1>
+      </div>
+      <nav class="nav-desktop">
+        <a href="home.html">Home</a>
+        <a href="login.html" class="active">Login</a>
+        <a href="register.html">Registration</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="login-container">
+    <form action="home.html" method="get" class="login-form">
+      <h2>Login</h2>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Log In</button>
+    </form>
+  </main>
+</body>
+</html>
