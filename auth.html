@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Spot - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+             <a href="index.html" class="logo-group">
+                <img src="logo_img.png" alt="logo" class="logo">
+                <h1>Shop Spot</h1>
+            </a>
+            <nav class="nav-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="catalog.html" class="nav-link">Catalog</a>
+                <a href="cart.html" class="nav-link">Cart</a>
+                <a href="auth.html" class="nav-button active">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="auth-container">
+            <div class="form-toggle">
+                <button id="show-login" class="toggle-button active">Login</button>
+                <button id="show-register" class="toggle-button">Register</button>
+            </div>
+
+            <form id="login-form" class="auth-form active" method="post" novalidate>
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <label for="login-username">Username or Email</label>
+                    <input type="text" id="login-username" name="username" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <div class="error-message"></div>
+                    <div class="form-group form-link-group">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                </div>
+                <button type="submit" class="submit-button">Log In</button>
+            </form>
+
+            <form id="register-form" class="auth-form" method="post" novalidate>
+                <h2>Create an Account</h2>
+                <div class="form-group">
+                    <label for="reg-name">Name</label>
+                    <input type="text" id="reg-name" name="name" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">E-mail id</label>
+                    <input type="email" id="reg-email" name="email" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">Phone number</label>
+                    <input type="tel" id="reg-phone" name="phone" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" name="password" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm-password">Confirm Password</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" required>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label>Date of birth</label>
+                    <div class="dob-group">
+                        <select name="dob-day" id="dob-day" required>
+                            <option value="">Day</option>
+                        </select>
+                        <select name="dob-month" id="dob-month" required>
+                            <option value="">Month</option>
+                            <option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option>
+                        </select>
+                        <select name="dob-year" id="dob-year" required>
+                            <option value="">Year</option>
+                        </select>
+                    </div>
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-options-group terms-group">
+                        <input type="checkbox" id="reg-terms" name="terms" required>
+                        I agree to the <a href="#" target="_blank">Terms of Service</a>
+                    </label>
+                    <div class="error-message"></div>
+                </div>
+                <button type="submit" class="submit-button">Register</button>
+            </form>
+        </div>
+    </main>
+    
+    <script src="auth.js" defer></script>
+</body>
+</html>
