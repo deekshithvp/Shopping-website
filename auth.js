@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         input.classList.remove('input-error');
     };
 
-    // --- REUSABLE VALIDATION FUNCTIONS (New Structure) ---
+    // --- REUSABLE VALIDATION FUNCTIONS (With New Improvements) ---
 
     // Get all form elements upfront
     const loginUsername = document.getElementById('login-username');
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dobYearSelect = document.getElementById('dob-year');
     const regTerms = document.getElementById('reg-terms');
 
-    // Each function validates one input and returns true (valid) or false (invalid)
+    // Login validation functions (unchanged)
     const validateLoginUsername = () => {
         if (loginUsername.value.trim() === '') {
             showError(loginUsername, 'Please enter your username or email.');
@@ -90,9 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     };
 
+    // --- IMPROVED Registration validation functions ---
+
     const validateRegName = () => {
-        if (regName.value.trim() === '') {
+        const nameValue = regName.value.trim();
+        if (nameValue === '') {
             showError(regName, 'Name cannot be empty.');
+            return false;
+        }
+        // NEW: Check if the name contains any digits
+        if (/\d/.test(nameValue)) {
+            showError(regName, 'Name should not contain numbers.');
             return false;
         }
         clearError(regName);
@@ -120,13 +128,31 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const validateRegPassword = () => {
-        if (regPassword.value.length < 8) {
+        const password = regPassword.value;
+        // NEW: Stricter password requirements
+        if (password.length < 8) {
             showError(regPassword, 'Password must be at least 8 characters long.');
             return false;
         }
+        if (!/[A-Z]/.test(password)) {
+            showError(regPassword, 'Must contain one uppercase letter.');
+            return false;
+        }
+        if (!/[a-z]/.test(password)) {
+            showError(regPassword, 'Must contain one lowercase letter.');
+            return false;
+        }
+        if (!/\d/.test(password)) {
+            showError(regPassword, 'Must contain one number.');
+            return false;
+        }
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            showError(regPassword, 'Must contain one special character.');
+            return false;
+        }
+
         clearError(regPassword);
-        // After validating the main password, re-validate the confirmation field
-        validateRegConfirmPassword();
+        validateRegConfirmPassword(); // Re-validate confirmation field
         return true;
     };
 
@@ -142,14 +168,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const validateRegDOB = () => {
-        clearError(dobDaySelect); // Clear any existing error message
+        clearError(dobDaySelect);
         [dobDaySelect, dobMonthSelect, dobYearSelect].forEach(el => el.classList.remove('input-error'));
-        if (dobDaySelect.value === '' || dobMonthSelect.value === '' || dobYearSelect.value === '') {
+
+        const day = parseInt(dobDaySelect.value, 10);
+        const month = parseInt(dobMonthSelect.value, 10);
+        const year = parseInt(dobYearSelect.value, 10);
+
+        if (!day || !month || !year) {
             showError(dobDaySelect, 'Please select a complete date of birth.');
             [dobDaySelect, dobMonthSelect, dobYearSelect].forEach(el => el.classList.add('input-error'));
             return false;
         }
-        return true;
+
+        // NEW: Check if the date is a real calendar date (e.g., not Feb 30)
+        const date = new Date(year, month - 1, day); // Month is 0-indexed in JS
+        if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+            showError(dobDaySelect, 'Please select a valid date.');
+            [dobDaySelect, dobMonthSelect, dobYearSelect].forEach(el => el.classList.add('input-error'));
+            return false;
+        }
+
+        // NEW: Check for minimum age (e.g., 18 years)
+        const eighteenYearsAgo = new Date();
+        eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
+        if (date > eighteenYearsAgo) {
+            showError(dobDaySelect, 'You must be at least 18 years old.');
+            [dobDaySelect, dobMonthSelect, dobYearSelect].forEach(el => el.classList.add('input-error'));
+            return false;
+        }
+
+        return true; // All DOB checks passed
     };
 
     const validateRegTerms = () => {
@@ -161,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     };
 
-    // --- ATTACH REAL-TIME EVENT LISTENERS ---
+    // --- ATTACH REAL-TIME EVENT LISTENERS (No changes needed here) ---
     const addLiveValidation = (element, validationFunc) => {
         if (element) {
             const eventType = (element.type === 'checkbox' || element.tagName === 'SELECT') ? 'change' : 'input';
@@ -169,11 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Login Form Listeners
     addLiveValidation(loginUsername, validateLoginUsername);
     addLiveValidation(loginPassword, validateLoginPassword);
-
-    // Registration Form Listeners
     addLiveValidation(regName, validateRegName);
     addLiveValidation(regEmail, validateRegEmail);
     addLiveValidation(regPhone, validateRegPhone);
@@ -183,17 +229,16 @@ document.addEventListener('DOMContentLoaded', () => {
     [dobDaySelect, dobMonthSelect, dobYearSelect].forEach(el => addLiveValidation(el, validateRegDOB));
 
 
-    // --- UPDATED FORM SUBMISSION LOGIC ---
+    // --- UPDATED FORM SUBMISSION LOGIC (No changes needed here) ---
     if (loginForm) {
         loginForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            // Run all validations one last time on submit
             const isUsernameValid = validateLoginUsername();
             const isPasswordValid = validateLoginPassword();
 
             if (isUsernameValid && isPasswordValid) {
                 alert('Login Successful!');
-                // loginForm.submit(); // Uncomment to allow form submission
+                // loginForm.submit();
             }
         });
     }
@@ -201,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerForm) {
         registerForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            // Run all validations to show all errors if the form is incomplete
             const isNameValid = validateRegName();
             const isEmailValid = validateRegEmail();
             const isPhoneValid = validateRegPhone();
@@ -212,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isNameValid && isEmailValid && isPhoneValid && isPasswordValid && isConfirmPasswordValid && isDOBValid && isTermsValid) {
                 alert('Registration Successful!');
-                // registerForm.submit(); // Uncomment to allow form submission
+                // registerForm.submit();
             }
         });
     }
