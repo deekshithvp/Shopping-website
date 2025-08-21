@@ -27,6 +27,10 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
+
 
 .container {
     width: 90%;
@@ -671,4 +675,5 @@ main {
     .books-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+
 }
