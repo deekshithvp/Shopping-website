@@ -1,0 +1,7 @@
+<!ELEMENT bookstore (book+)>
+ <!ELEMENT book (Title, Author, Price, Image)>
+ <!ATTLIST book category CDATA #REQUIRED>
+ <!ELEMENT Title (#PCDATA)>
+ <!ELEMENT Author (#PCDATA)>
+ <!ELEMENT Price (#PCDATA)>
+ <!ELEMENT Image (#PCDATA)>
