@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book category="computer-science">
+        <Title>The Art of Programming</Title>
+        <Author>Donald Knuth</Author>
+        <Price>₹1250</Price>
+        <Image>https://m.media-amazon.com/images/I/41SkPlarfwL._SY445_SX342_.jpg</Image>
+    </book>
+
+    <book category="electronics">
+        <Title>Microelectronic Circuits</Title>
+        <Author>Sedra &amp; Smith</Author>
+        <Price>₹980</Price>
+        <Image>https://th.bing.com/th/id/R.17d85e81385ce14b472dd73b8085273d?rik=MZA5gxbVWBWcag&amp;riu=http%3a%2f%2fimg5a.flixcart.com%2fimage%2fbook%2f1%2f3%2f1%2fmicroelectronic-circuits-theory-and-applications-with-cd-rom-original-imadgwyxjzkkxypz.jpeg&amp;ehk=fNNiyppDl0cXZFxX%2flCkzmv9CFcazXo1ZUi5siZmP0c%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0</Image>
+    </book>
+
+    <book category="literature">
+        <Title>To Kill a Mockingbird</Title>
+        <Author>Harper Lee</Author>
+        <Price>₹550</Price>
+        <Image>https://cdn11.bigcommerce.com/s-gibnfyxosi/images/stencil/2560w/products/114990/116752/51IXWZzlgSL__41945.1615559130.jpg?c=1</Image>
+    </book>
+
+    <book category="self-help">
+        <Title>Atomic Habits</Title>
+        <Author>James Clear</Author>
+        <Price>₹699</Price>
+        <Image>https://theblurshop.com/wp-content/uploads/2023/11/Atomic-Hbbit.jpg</Image>
+    </book>
+
+    <book category="computer-science">
+        <Title>Clean Code</Title>
+        <Author>Robert C. Martin</Author>
+        <Price>₹850</Price>
+        <Image>https://cdn.akakce.com/z/-/clean-code-robert-martin.jpg</Image>
+    </book>
+
+    <book category="literature">
+        <Title>The Great Gatsby</Title>
+        <Author>F. Scott Fitzgerald</Author>
+        <Price>₹450</Price>
+        <Image>https://images.thalia.media/07/-/af25f2301fdf40ad97b5095d98aa5fde/the-great-gatsby-f-scott-fitzgerald-englische-ausgabe-taschenbuch-f-scott-fitzgerald-englisch.jpeg</Image>
+    </book>
+
+    <book category="electronics">
+        <Title>Practical Electronics</Title>
+        <Author>Paul Scherz</Author>
+        <Price>₹1100</Price>
+        <Image>https://m.media-amazon.com/images/I/611a-HQvgVL._SL1000_.jpg</Image>
+    </book>
+
+    <book category="self-help">
+        <Title>The Power of Now</Title>
+        <Author>Eckhart Tolle</Author>
+        <Price>₹650</Price>
+        <Image>https://m.media-amazon.com/images/I/4108V6JJ+jL.jpg</Image>
+    </book>
+</bookstore>
